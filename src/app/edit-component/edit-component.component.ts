@@ -1,18 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeeService } from '../employee.service';
 import { Employee } from '../models/employee.model';
+import { EmployeeService } from '../employee.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-show-employee',
-  templateUrl: './show-employee.component.html',
-  styleUrls: ['./show-employee.component.css']
+  selector: 'app-edit-component',
+  templateUrl: './edit-component.component.html',
+  styleUrls: ['./edit-component.component.css']
 })
-export class ShowEmployeeComponent implements OnInit {
+export class EditComponentComponent implements OnInit {
   user: Employee = new Employee();
   id: string;
   private sub: any;
-  constructor(private empService: EmployeeService, private route: ActivatedRoute) { }
+
+  constructor(private route: ActivatedRoute, private empService: EmployeeService) {
+
+  }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -26,5 +29,14 @@ export class ShowEmployeeComponent implements OnInit {
 
     });
   }
+
+  updateEmployee(): void {
+    this.user.id=this.id;
+    this.empService.updateEmployee(this.user)
+        .subscribe( data => {
+          alert("Employee updated successfully.");
+        });
+
+  };
 
 }

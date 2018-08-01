@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Employee } from '../models/employee.model';
 import { EmployeeService } from '../employee.service';
+import { Router } from '../../../node_modules/@angular/router';
+
 
 @Component({
   selector: 'app-employee',
@@ -9,7 +11,7 @@ import { EmployeeService } from '../employee.service';
 })
 export class EmployeeComponent implements OnInit {
   employees: Employee[];
-  constructor(private empService: EmployeeService) { }
+  constructor(private empService: EmployeeService, private router: Router) { }
   ngOnInit() {
     this.empService.getEmployees()
       .subscribe( data => {
@@ -23,4 +25,11 @@ export class EmployeeComponent implements OnInit {
       })
   };
 
+  viewEmployee(employee: Employee): void {
+    this.router.navigate(['/users', employee.id])
+  };
+
+  editEmployee(employee: Employee): void {
+    this.router.navigate(['/users/edit', employee.id])
+  };
 }

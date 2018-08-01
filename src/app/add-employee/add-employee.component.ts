@@ -17,7 +17,7 @@ export class AddEmployeeComponent  {
   }
 
   createEmployee(): void {
-    this.user.active="true";
+    this.user.status="true";
     this.empService.createEmployee(this.user)
         .subscribe( data => {
           alert("Employee created successfully.");

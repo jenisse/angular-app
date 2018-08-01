@@ -11,6 +11,7 @@ export class EmployeeService {
   public EMPLOYEE_DETAIL = this.API + '/show-employee/'; 
   public EMPLOYEE_DEL = this.API + '/delete-employee/';
   public EMPLOYEE_ADD = this.API + '/new-employee';
+  public EMPLOYEE_EDIT = this.API + '/edit-employee';
   private headers;
 
   constructor(private http: HttpClient) {let headers = new Headers();
@@ -30,5 +31,9 @@ export class EmployeeService {
 
   public createEmployee(user) {
     return this.http.post<Employee>(this.EMPLOYEE_ADD, user, { headers: this.headers});
+  }
+
+  public updateEmployee(user) {
+    return this.http.put<Employee>(this.EMPLOYEE_EDIT, user, { headers: this.headers});
   }
 }

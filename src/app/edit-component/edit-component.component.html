@@ -1,0 +1,20 @@
+<div class="col-md-6">
+  <h2 class="text-center">Add User</h2>
+<form>
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input type="name" [(ngModel)]="user.name" placeholder={{user.name}} name="name" class="form-control" id="name">
+  </div>
+
+  <div class="form-group">
+    <label for="lastName">Last Name:</label>
+    <input [(ngModel)]="user.lastName" placeholder={{user.lastName}} name="lastName" class="form-control" id="lastName">
+  </div>
+  <div class="form-group">
+    <label for="status">Status:</label>
+    <input [(ngModel)]="status" ng-value="true" type="radio"> Activo
+    <input [(ngModel)]="status" ng-value="false" type="radio"> Inactivo
+  </div>
+  <button class="btn btn-success" (click)="updateEmployee()">Edit</button>
+</form>
+</div>
